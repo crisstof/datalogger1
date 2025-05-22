@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head><title>Mini HA</title></head>
+<body>
+<h2>Capteur Température</h2>
+<div id="temp">Chargement...</div>
+
+<h2>Lumières</h2>
+<button onclick="toggleLight()">Allumer Salon</button>
+<div id="light-status"></div>
+
+<script>
+function fetchData() {
+    fetch('/api/sensor/1')
+        .then(res => res.json())
+        .then(data => {
+            if (data.length > 0) {
+                const last = data[data.length - 1];
+                document.getElementById("temp").innerHTML =
+                    `Dernière mesure : ${last[2]} °C à ${last[3]}`;
+            }
+        });
+}
+
+function fetchLights() {
+    fetch('/api/lights')
+        .then(res => res.json())
+        .then(data => {
+            let html = '';
+            for (let room in data) {
+                html += `${room}: <strong>${data[room] ? 'ON' : 'OFF'}</strong><br>`;
+            }
+            document.getElementById("light-status").innerHTML = html;
+        });
+}
+
+function toggleLight() {
+    fetch('/api/light/salon', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({state: true})
+    }).then(res => res.json()).then(() => fetchLights());
+}
+
+setInterval(fetchData, 5000);
+setInterval(fetchLights, 5000);
+fetchData();
+fetchLights();
+</script>
+</body>
+</html>

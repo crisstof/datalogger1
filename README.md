@@ -22,3 +22,10 @@ python init_db.py
 python app.py
 
 Accède à l'interface via http://localhost:5000
+
+
+✅ Fonctionnalités implémentées
+Simule un capteur de température toutes les 5 secondes.
+Stocke les mesures dans une base SQLite.
+Affiche la dernière valeur sur une page web.
+Possibilité d’allumer une lampe virtuelle via une requête POST.

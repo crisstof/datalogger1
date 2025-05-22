@@ -37,6 +37,7 @@ def index():
 lights = {"salon": False}
 
 
+# ajouter une commande allumer une lampe simulée
 @app.route("/api/light/<room>", methods=["POST"])
 def toggle_light(room):
     state = request.json.get("state")
