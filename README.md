@@ -20,3 +20,5 @@ Une version ultra-simplifiée de Home Assistant pour comprendre les concepts de 
 pip install -r requirements.txt
 python init_db.py
 python app.py
+
+Accède à l'interface via http://localhost:5000
