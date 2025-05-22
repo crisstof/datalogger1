@@ -1,0 +1,13 @@
+Structure:
+---------
+mini-home-assistant/
+│
+├── app.py                  # Backend Flask
+├── db.sql                  # Script d'initialisation de la base
+├── init_db.py              # Script d'initialisation de SQLite
+├── static/
+│   └── index.html          # Frontend HTML/JS simple
+├── README.md               # Documentation basique
+└── requirements.txt        # Dépendances Python
+
+
